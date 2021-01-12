@@ -19,20 +19,20 @@ class Config extends Controller
      * 
      * @static
      */
-    public static $isProduction = false;
+    public static $isProduction = true;
     /**
      * Set it true to enable 3D Secure by default
      * 
      * @static
      */
-    public static $is3ds = false;
+    public static $is3ds = true;
     /**
      * Enable request params sanitizer (validate and modify charge request params).
      * See Midtrans_Sanitizer for more details
      * 
      * @static
      */
-    public static $isSanitized = false;
+    public static $isSanitized = true;
     /**
      * Default options for every request
      * 

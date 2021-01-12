@@ -33,7 +33,7 @@ class MidtransController extends Controller
 
         $item_list = array();
         $amount = 0;
-        Config::$serverKey = 'SB-Mid-server-rCZKKq_SwrJoP5KUTNg2gGuP';
+        Config::$serverKey = 'Mid-server-rlwmrgsUtMuiNebjvBYdEbL5';
         if (!isset(Config::$serverKey)) {
             return "Please set your payment server key";
         }
