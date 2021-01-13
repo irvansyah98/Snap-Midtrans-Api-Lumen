@@ -33,7 +33,7 @@ class MidtransController extends Controller
 
         $item_list = array();
         $amount = 0;
-        Config::$serverKey = 'SB-Mid-server-dbbL_cnYxewcprTEtc_Z5ZN8';
+        Config::$serverKey = 'Mid-server-rlwmrgsUtMuiNebjvBYdEbL5';
         if (!isset(Config::$serverKey)) {
             return "Please set your payment server key";
         }
@@ -44,16 +44,16 @@ class MidtransController extends Controller
         
         // Required
 
-         $item_list[] = [
-                'id' => "111",
-                'price' => 20000,
+        $item_list[] = [
+                'id' => rand(),
+                'price' => $req->price,
                 'quantity' => 1,
-                'name' => "Majohn"
+                'name' => "Super Star"
         ];
 
         $transaction_details = array(
             'order_id' => rand(),
-            'gross_amount' => 20000, // no decimal allowed for creditcard
+            'gross_amount' => $item_list[0]['price'], // no decimal allowed for creditcard
         );
 
 
@@ -61,39 +61,39 @@ class MidtransController extends Controller
         $item_details = $item_list;
 
         // Optional
-        $billing_address = array(
-            'first_name'    => "Andri",
-            'last_name'     => "Litani",
-            'address'       => "Mangga 20",
-            'city'          => "Jakarta",
-            'postal_code'   => "16602",
-            'phone'         => "081122334455",
-            'country_code'  => 'IDN'
-        );
+        // $billing_address = array(
+        //     'first_name'    => $req->first_name,
+        //     'last_name'     => "Litani",
+        //     'address'       => "Mangga 20",
+        //     'city'          => "Jakarta",
+        //     'postal_code'   => "16602",
+        //     'phone'         => "081122334455",
+        //     'country_code'  => 'IDN'
+        // );
 
         // Optional
-        $shipping_address = array(
-            'first_name'    => "Obet",
-            'last_name'     => "Supriadi",
-            'address'       => "Manggis 90",
-            'city'          => "Jakarta",
-            'postal_code'   => "16601",
-            'phone'         => "08113366345",
-            'country_code'  => 'IDN'
-        );
+        // $shipping_address = array(
+        //     'first_name'    => "Obet",
+        //     'last_name'     => "Supriadi",
+        //     'address'       => "Manggis 90",
+        //     'city'          => "Jakarta",
+        //     'postal_code'   => "16601",
+        //     'phone'         => "08113366345",
+        //     'country_code'  => 'IDN'
+        // );
 
         // Optional
         $customer_details = array(
-            'first_name'    => "Andri",
-            'last_name'     => "Litani",
-            'email'         => "andri@litani.com",
-            'phone'         => "081122334455",
-            'billing_address'  => $billing_address,
-            'shipping_address' => $shipping_address
+            'first_name'    => $req->first_name,
+            'last_name'     => $req->last_name,
+            'email'         => $req->email,
+            'phone'         => $req->phone,
+            'billing_address'  => '',
+            'shipping_address' => ''
         );
 
         // Optional, remove this to display all available payment methods
-        $enable_payments = array();
+        $enable_payments = array('GOPAY','bni_va','permata_va','echannel');
 
         // Fill transaction details
         $transaction = array(
@@ -108,7 +108,7 @@ class MidtransController extends Controller
             return response()->json($snapToken);
             // return ['code' => 1 , 'message' => 'success' , 'result' => $snapToken];
         } catch (\Exception $e) {
-            dd($e);
+            dd($e->getMessage());
             return ['code' => 0 , 'message' => 'failed'];
         }
 
