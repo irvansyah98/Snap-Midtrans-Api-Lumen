@@ -25,14 +25,14 @@ class Config extends Controller
      * 
      * @static
      */
-    public static $is3ds = true;
+    public static $is3ds = false;
     /**
      * Enable request params sanitizer (validate and modify charge request params).
      * See Midtrans_Sanitizer for more details
      * 
      * @static
      */
-    public static $isSanitized = true;
+    public static $isSanitized = false;
     /**
      * Default options for every request
      * 
@@ -52,8 +52,7 @@ class Config extends Controller
      */
     public static function getBaseUrl()
     {
-        return Config::$isProduction ?
-        Config::PRODUCTION_BASE_URL : Config::SANDBOX_BASE_URL;
+        return Config::PRODUCTION_BASE_URL;
     }
 
     /**
@@ -63,7 +62,6 @@ class Config extends Controller
      */
     public static function getSnapBaseUrl()
     {
-        return Config::$isProduction ?
-        Config::SNAP_PRODUCTION_BASE_URL : Config::SNAP_SANDBOX_BASE_URL;
+        return Config::SNAP_PRODUCTION_BASE_URL;
     }
 }

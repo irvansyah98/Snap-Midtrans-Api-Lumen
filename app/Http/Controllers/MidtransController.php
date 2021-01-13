@@ -93,7 +93,7 @@ class MidtransController extends Controller
         );
 
         // Optional, remove this to display all available payment methods
-        $enable_payments = array('bca','mandiri');
+        $enable_payments = array();
 
         // Fill transaction details
         $transaction = array(
