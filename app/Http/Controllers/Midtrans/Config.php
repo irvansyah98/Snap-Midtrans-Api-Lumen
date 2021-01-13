@@ -19,7 +19,7 @@ class Config extends Controller
      * 
      * @static
      */
-    public static $isProduction = true;
+    public static $isProduction = false;
     /**
      * Set it true to enable 3D Secure by default
      * 
@@ -52,7 +52,8 @@ class Config extends Controller
      */
     public static function getBaseUrl()
     {
-        return Config::PRODUCTION_BASE_URL;
+        return Config::$isProduction ?
+        Config::PRODUCTION_BASE_URL : Config::SANDBOX_BASE_URL;
     }
 
     /**
@@ -62,6 +63,7 @@ class Config extends Controller
      */
     public static function getSnapBaseUrl()
     {
-        return Config::SNAP_PRODUCTION_BASE_URL;
+        return Config::$isProduction ?
+        Config::SNAP_PRODUCTION_BASE_URL : Config::SNAP_SANDBOX_BASE_URL;
     }
 }
